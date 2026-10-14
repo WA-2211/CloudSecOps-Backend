@@ -13,6 +13,27 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    email: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    role: {
+      enum: ['ADMIN', 'ANALYST', 'VIEWER'],
+      default: 'VIEWER'
+    },
+    isActive: {
+      type: Boolean
+    },
+    lastLogin: {
+      type: Date
+    },
+    failedLoginAttempts: {
+      type: Number
+    },
+    lockUntil: {
+      type: Date
+    }
   },
   { timestamps: true },
 );
