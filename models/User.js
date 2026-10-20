@@ -16,7 +16,9 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
+      trim: true,
+      lowercase: true
     },
     role: {
       type: String,
@@ -24,19 +26,22 @@ const userSchema = new mongoose.Schema(
       default: 'VIEWER'
     },
     isActive: {
-      type: Boolean
+      type: Boolean,
+      default: true
     },
     lastLogin: {
       type: Date
     },
     failedLoginAttempts: {
-      type: Number
+      type: Number,
+      default: 0
     },
     lockUntil: {
       type: Date
     }
   },
-  { timestamps: true },
+    { timestamps: true },
+
 );
 
 userSchema.set("toJSON", {
